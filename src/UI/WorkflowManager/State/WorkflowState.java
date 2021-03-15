@@ -5,10 +5,8 @@
  */
 package UI.WorkflowManager.State;
 
-import UI.UIMediator;
 import Model.Interfaces.IStateContext;
 import Model.Interfaces.IWorkflowState;
-import Model.Person;
 
 /**
  *

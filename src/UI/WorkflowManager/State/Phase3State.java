@@ -12,36 +12,42 @@ import Model.Interfaces.IStateContext;
  * @author Maximiliano Herrera
  */
 public class Phase3State extends WorkflowState {
-    
+
     public Phase3State() {
         super();
     }
-    
+
     @Override
     public void add(IStateContext context) {
     }
-    
+
     @Override
     public void count(IStateContext context) {
         context.getMediator().patientsregisteredCount();
     }
-    
+
     @Override
     public void list(IStateContext context) {
         context.getMediator().listAll();
     }
-    
+
     @Override
     public void setPriorities(IStateContext context) {
     }
-    
+
     @Override
     public void getNextGroup(IStateContext context) {
-        boolean groupExtracted = context.getMediator().patientsToBeScheduled();
-        
-        if (!groupExtracted) {
+        context.getMediator().patientsToBeScheduled();
+
+        if (!context.getMediator().AreThereMorePatients()) {
+            context.getMainJFrame().showMessage("There are no more patients to be scheduled");
             context.initialize();
             context.ChangeStatus(new Phase1State());
         }
+    }
+
+    @Override
+    public String getCurrentPhase() {
+        return "Phase 3: Scheduling patients";
     }
 }

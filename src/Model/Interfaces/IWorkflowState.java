@@ -5,8 +5,6 @@
  */
 package Model.Interfaces;
 
-import Model.Person;
-
 /**
  *
  * @author Maximiliano Herrera
@@ -24,4 +22,6 @@ public interface IWorkflowState {
     public void setPriorities(IStateContext context);
 
     public void getNextGroup(IStateContext context);
+    
+    public String getCurrentPhase();
 }

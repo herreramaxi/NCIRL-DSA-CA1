@@ -63,22 +63,31 @@ public class Person {
         return "Person{" + "_name=" + _name + ", _age=" + _age + ", _medicalCondition=" + _medicalCondition + '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        // I am considering that name is the way to uniquevocaly idendity to a Person
-        if (o == null)
-            throw new IllegalArgumentException("Parameter is null");
-
-        Person p = (Person) o;
-
-        return _name.equals(p.getName());
-    }
-
+    //I am considering that the properties name, age medicalCondition identify uniquevocaly a Person
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this._name);
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this._name);
+        hash = 83 * hash + this._age;
+        hash = 83 * hash + (this._medicalCondition ? 1 : 0);
         return hash;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Person other = (Person) obj;
+        if (this._age != other._age)
+            return false;
+        if (this._medicalCondition != other._medicalCondition)
+            return false;
+        if (!Objects.equals(this._name, other._name))
+            return false;
+        return true;
+    }
 }
