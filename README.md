@@ -15,5 +15,8 @@ https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManag
 #### Design - Mockup
 ![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png)
 
+#### Mainframe
+![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Main%20frame.JPG)
+
 #### Workflow state machine
 ![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Workflow%20state%20machine.jpg)
