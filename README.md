@@ -12,5 +12,8 @@ https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/VaccinationList
 ### Test cases
 https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java
 
+### Design - Mockup
+![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png)
+
 ### Workflow state machine
 ![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Workflow%20state%20machine.jpg)
