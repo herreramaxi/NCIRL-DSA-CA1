@@ -5,34 +5,30 @@
  */
 package Model;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Maximiliano Herrera
  */
 public class PQElement {
 
-    private final Person element;
-    private final int key;
+    private final Person _person;
+    private final int _priority;
 
-    public Person getElement() {
-        return element;
+    public Person getPerson() {
+        return _person;
     }
 
-    public int getKey() {
-        return key;
+    public int getPriority() {
+        return _priority;
     }
 
-    public PQElement(Person element, int key) {
-        this.element = element;
-        this.key = key;
+    public PQElement(Person element, int priority) {
+        _person = element;
+        _priority = priority;
     }
 
-    
-    //todo: check this
     @Override
     public String toString() {
-        return "PQElement{" + "element=" + element + ", key=" + key + '}';
+        return "PQElement{" + "element=" + _person + ", key=" + _priority + '}';
     }
 }

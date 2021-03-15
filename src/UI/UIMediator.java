@@ -32,7 +32,6 @@ public class UIMediator {
         boolean medicalCondition = _mainFrame.getMedicalCondition();
 
         Person person = new Person(name, age, medicalCondition);
-
         Validation validation = person.validate();
 
         if (!validation.isSuccessful()) {
@@ -47,7 +46,7 @@ public class UIMediator {
         _mainFrame.appendTextToTextArea(person.toString());
     }
 
-    public void patientsregisteredCount() {
+    public void patientsRegisteredCount() {
         int count = _listManager.size();
         _mainFrame.appendTextToTextArea("Patients registered: " + count);
     }
@@ -110,7 +109,7 @@ public class UIMediator {
         _mainFrame.getNextGroupButtonSetEnable(enabled);
     }
 
-    public boolean AreThereMorePatients() {
+    public boolean areThereMorePatientsToBeScheduled() {
         return !_listManager.isEmpty();
     }
 }

@@ -23,7 +23,7 @@ public class Phase2State extends WorkflowState {
 
     @Override
     public void count(IStateContext context) {
-        context.getMediator().patientsregisteredCount();
+        context.getMediator().patientsRegisteredCount();
     }
 
     @Override
