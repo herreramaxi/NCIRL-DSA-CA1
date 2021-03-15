@@ -5,7 +5,6 @@
  */
 package Model.Interfaces;
 
-import java.util.ArrayList;
 import Model.PQElement;
 import Model.Person;
 
@@ -13,15 +12,15 @@ import Model.Person;
  *
  * @author Maximiliano Herrera
  */
-public interface PQInterface {
+public interface IPriorityQueue {
 
     public int size();
 
     public boolean isEmpty();
 
-    public void enqueue(int key, Person element);
+    public void enqueue(int priority, Person element);
 
     public PQElement dequeue();
 
-    public void printPQ();
+    public PQElement peek();
 }

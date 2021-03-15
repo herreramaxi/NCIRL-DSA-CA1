@@ -28,7 +28,7 @@ public class MainJFrame extends javax.swing.JFrame {
         _workflowManager.attach(new UIComponentObserverPull(() -> {
             jTextFieldStatus.setText(_workflowManager.getCurrrentPhase());
         }));
-        
+
         _workflowManager.initialize();
         jTextFieldStatus.setText(_workflowManager.getCurrrentPhase());
     }
@@ -51,11 +51,50 @@ public class MainJFrame extends javax.swing.JFrame {
         jTextArea1.append(text + "\n");
     }
 
+    public String getPatientName() {
+        return jTextFieldName.getText();
+    }
+
+    public int getPatientAge() {
+        try {
+            return Integer.parseInt(jTextFieldAge.getText());
+        } catch (Exception exception) {
+            return 0;
+        }
+    }
+
+    public boolean getMedicalCondition() {
+        return jCheckBoxMedicalCondition.isSelected();
+    }
+
+    public void showMessageDialog(String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
+
+    public void showErrorMessageDialog(String message) {
+        JOptionPane.showMessageDialog(this, message, "Dialog",
+                JOptionPane.WARNING_MESSAGE);
+    }
+
+    public void priorityButtonSetEnable(boolean enabled) {
+        jButtonAllocatePriorities.setEnabled(enabled);
+    }
+
+    public void addButtonSetEnable(boolean enabled) {
+        jButtonAdd.setEnabled(enabled);
+    }
+
+    public void getNextGroupButtonSetEnable(boolean enabled) {
+        jButtonGetNextGroup.setEnabled(enabled);
+    }
+
+    //The idea is from https://youtu.be/YA88rtqqtz0
+    //But I simplified it
     private void FilterNumbersOnTextField(KeyEvent evt) {
         char input = evt.getKeyChar();
 
         try {
-            Integer parseInt = Integer.parseInt(String.valueOf(input));
+            Integer.parseInt(String.valueOf(input));
         } catch (Exception exception) {
             evt.consume();
         }
@@ -258,43 +297,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
         jTextArea1.setText("");
     }//GEN-LAST:event_jButtonClearActionPerformed
-
-    String getPatientName() {
-        return jTextFieldName.getText();
-    }
-
-    int getPatientAge() {
-        try {
-            return Integer.parseInt(jTextFieldAge.getText());
-        } catch (Exception exception) {
-            return 0;
-        }
-    }
-
-    boolean getMedicalCondition() {
-        return jCheckBoxMedicalCondition.isSelected();
-    }
-
-    public void showMessageDialog(String message) {
-        JOptionPane.showMessageDialog(null, message);
-    }
-
-    public void showErrorMessageDialog(String message) {
-        JOptionPane.showMessageDialog(this, message, "Dialog",
-                JOptionPane.WARNING_MESSAGE);
-    }
-
-    public void priorityButtonSetEnable(boolean enabled) {
-        jButtonAllocatePriorities.setEnabled(enabled);
-    }
-
-    public void addButtonSetEnable(boolean enabled) {
-        jButtonAdd.setEnabled(enabled);
-    }
-
-    void getNextGroupButtonSetEnable(boolean enabled) {
-        jButtonGetNextGroup.setEnabled(enabled);
-    }
 
     /**
      * @param args the command line arguments
