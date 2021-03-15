@@ -40,4 +40,9 @@ public class Phase2State extends WorkflowState {
         this.ChangeStatus(context, new Phase3State());
         context.getNextGroup();
     }
+
+    @Override
+    public String getCurrentPhase() {
+        return "Phase 2: Patient priorities allocated";
+    }
 }

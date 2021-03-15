@@ -6,7 +6,6 @@
 package UI.WorkflowManager.State;
 
 import Model.Interfaces.IStateContext;
-import Model.Person;
 
 /**
  *
@@ -32,16 +31,22 @@ public class Phase1State extends WorkflowState {
 
     @Override
     public void setPriorities(IStateContext context) {
-        context.getMediator().setPriorities();
+        if (!context.getMediator().setPriorities())
+            return;
+
         context.getMediator().setPrioritiesButtonSetEnable(false);
         context.getMediator().addButtonSetEnable(false);
         context.getMediator().getNextGroupButtonSetEnable(true);
-        
+
         this.ChangeStatus(context, new Phase2State());
     }
 
     @Override
-    public void getNextGroup(IStateContext context) {        
+    public void getNextGroup(IStateContext context) {
     }
 
+    @Override
+    public String getCurrentPhase() {
+        return "Phase 1: Loading confirmed patients";
+    }
 }

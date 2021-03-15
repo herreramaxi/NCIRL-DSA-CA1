@@ -9,6 +9,8 @@ import Model.Validation;
 import java.util.ArrayList;
 import Model.Person;
 import Model.VaccinationListManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,7 +23,7 @@ public class UIMediator {
 
     UIMediator(MainJFrame mainFrame) {
         _mainFrame = mainFrame;
-        _listManager = new VaccinationListManager();
+        _listManager = new VaccinationListManager();  
     }
 
     public void addPerson() {
@@ -46,12 +48,12 @@ public class UIMediator {
     }
 
     public void patientsregisteredCount() {
-        int count = _listManager.count();
+        int count = _listManager.size();
         _mainFrame.appendTextToTextArea("Patients registered: " + count);
     }
 
     public void listAll() {
-        if (_listManager.count() == 0) {
+        if (_listManager.size() == 0) {
             _mainFrame.showMessage("There are not registered patients");
             return;
         }
@@ -62,18 +64,26 @@ public class UIMediator {
         });
     }
 
-    public void setPriorities() {
-        if (_listManager.count() == 0) {
+    public boolean setPriorities() {
+        if (_listManager.size() == 0) {
             _mainFrame.showMessage("There are not patients registered");
-            return;
+            return false;
         }
 
-        _listManager.setPriorities();
-        _mainFrame.showMessage("Priorities were assigned succesfully");
+        try {
+            _listManager.setPriorities();
+            _mainFrame.showMessage("Priorities were assigned successfully");
+            return true;
+        } catch (Exception ex) {
+            Logger.getLogger(UIMediator.class.getName()).log(Level.SEVERE, null, ex);
+            _mainFrame.showErrorMessage("Error when setting priorities: " + ex.getMessage());           
+        }
+        
+         return false;
     }
 
     public boolean patientsToBeScheduled() {
-        ArrayList<Person> patients = _listManager.getPatientsWithHighestPriority();
+        ArrayList<Person> patients = _listManager.getNextGroupToBeScheduled();
 
         if (patients.isEmpty()) {
             _mainFrame.showMessage("There are no patients to be scheduled");
@@ -97,6 +107,10 @@ public class UIMediator {
     }
 
     public void getNextGroupButtonSetEnable(boolean enabled) {
-       _mainFrame.getNextGroupButtonSetEnable(enabled);
+        _mainFrame.getNextGroupButtonSetEnable(enabled);
+    }
+
+    public boolean AreThereMorePatients() {
+        return !_listManager.isEmpty();
     }
 }

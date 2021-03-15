@@ -5,8 +5,10 @@
  */
 package UI.WorkflowManager;
 
+import Model.Interfaces.IObserverPull;
 import Model.Interfaces.IWorkflowState;
 import Model.Interfaces.IStateContext;
+import Model.Interfaces.ISubject;
 import UI.WorkflowManager.State.Phase1State;
 import UI.MainJFrame;
 import UI.UIMediator;
@@ -15,11 +17,12 @@ import UI.UIMediator;
  *
  * @author Maximiliano Herrera
  */
-public class WorkflowManager implements IStateContext {
+public class WorkflowManager implements IStateContext, ISubject {
 
     private final MainJFrame _mainJFrame;
     private final UIMediator _mediator;
     private IWorkflowState _state;
+    private IObserverPull _observer;
 
     public MainJFrame getMainJFrame() {
         return _mainJFrame;
@@ -32,7 +35,7 @@ public class WorkflowManager implements IStateContext {
     public WorkflowManager(MainJFrame mainJFrame, UIMediator mediator) {
         _mainJFrame = mainJFrame;
         _mediator = mediator;
-        _state = new Phase1State();      
+        _state = new Phase1State();
     }
 
     @Override
@@ -63,12 +66,30 @@ public class WorkflowManager implements IStateContext {
     @Override
     public void ChangeStatus(IWorkflowState state) {
         _state = state;
+        this.Notify();
     }
 
     @Override
     public void initialize() {
         _mediator.addButtonSetEnable(true);
         _mediator.setPrioritiesButtonSetEnable(false);
-        _mediator.getNextGroupButtonSetEnable(false);
+        _mediator.getNextGroupButtonSetEnable(false);       
+    }
+
+    @Override
+    public void attach(IObserverPull observer) {
+       _observer = observer;
+    }
+
+    @Override
+    public void Notify() {
+        if (_observer == null)
+            return;
+
+        _observer.update();
+    }
+
+    public String getCurrrentPhase() {
+        return _state.getCurrentPhase();
     }
 }

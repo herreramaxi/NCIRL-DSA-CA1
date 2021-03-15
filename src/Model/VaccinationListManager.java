@@ -5,6 +5,8 @@
  */
 package Model;
 
+import Model.Exceptions.NoRegisteredPatientsException;
+import Model.Exceptions.PrioritiesAlreadyAssignedException;
 import java.util.ArrayList;
 
 /**
@@ -28,7 +30,7 @@ public class VaccinationListManager {
         _peopleToBeVaccinated.add(person);
     }
 
-    public int count() {
+    public int size() {
         return _peopleToBeVaccinated.size();
     }
 
@@ -36,13 +38,19 @@ public class VaccinationListManager {
         return _peopleToBeVaccinated;
     }
 
-    public void setPriorities() {
+    public void setPriorities() throws PrioritiesAlreadyAssignedException, NoRegisteredPatientsException {
+        if (!_priorityList.isEmpty())
+            throw new PrioritiesAlreadyAssignedException();
+
+        if (_peopleToBeVaccinated.isEmpty())
+            throw new NoRegisteredPatientsException();
+
         _peopleToBeVaccinated.forEach((person) -> {
             _priorityList.allocateInPriorityQueue(person);
         });
     }
 
-    public ArrayList<Person> getPatientsWithHighestPriority() {
+    public ArrayList<Person> getNextGroupToBeScheduled() {
         ArrayList<Person> group = new ArrayList<>();
         ArrayList<PQElement> pqElements = _priorityList.dequeueGroup();
 
@@ -56,4 +64,7 @@ public class VaccinationListManager {
         return group;
     }
 
+    public boolean isEmpty() {
+        return this.size() == 0;
+    }
 }

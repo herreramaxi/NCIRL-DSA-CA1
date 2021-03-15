@@ -37,11 +37,6 @@ public class MyPQ implements PQInterface {
         int index = findInsertPosition(key);
 
         _pq.add(index, newElement);
-//        if (index > _pq.size()) {
-//            _pq.add(newElement);
-//        } else {
-//            _pq.add(index, newElement);
-//        }
     }
 
     @Override
@@ -50,6 +45,7 @@ public class MyPQ implements PQInterface {
     }
 
     public ArrayList<PQElement> dequeueGroup() {
+        //TODO: maybe would be good to return an object group: { list, priority}
         ArrayList<PQElement> list = new ArrayList<>();
         PQElement firsElement = this.peek();
 
@@ -65,7 +61,7 @@ public class MyPQ implements PQInterface {
 
             list.add(this.dequeue());
         }
-        
+
         return list;
     }
 
@@ -84,14 +80,13 @@ public class MyPQ implements PQInterface {
 
     private int findInsertPosition(int key) {
         boolean found = false;
-
-        PQElement element;
         int position = 0;
+        PQElement element;
 
         while (position < _pq.size() && !found) {
             element = _pq.get(position);
 
-            //>= for FIFO within same priority
+            //FIFO within same priority (>=)
             if (element.getKey() >= key) {
                 position = position + 1;
             } else {
