@@ -6,7 +6,7 @@
 package Model.Interfaces;
 
 import Model.PQElement;
-import Model.Person;
+import Model.Patient;
 
 /**
  *
@@ -18,7 +18,7 @@ public interface IPriorityQueue {
 
     public boolean isEmpty();
 
-    public void enqueue(int priority, Person element);
+    public void enqueue(int priority, Patient element);
 
     public PQElement dequeue();
 

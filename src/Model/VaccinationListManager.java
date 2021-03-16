@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class VaccinationListManager {
 
-    private final ArrayList<Person> _peopleToBeVaccinated;
+    private final ArrayList<Patient> _peopleToBeVaccinated;
     private final PriorityQueue _priorityQueue;
 
     public VaccinationListManager() {
@@ -24,18 +24,18 @@ public class VaccinationListManager {
         _priorityQueue = new PriorityQueue();
     }
 
-    public void addPerson(Person person) {
+    public void addPatient(Patient patient) {
         //InternalId is used to identify an instance unequivocally.        
-        person.setInternalId(_peopleToBeVaccinated.size() + 1);
+        patient.setInternalId(_peopleToBeVaccinated.size() + 1);
 
-        _peopleToBeVaccinated.add(person);
+        _peopleToBeVaccinated.add(patient);
     }
 
     public int size() {
         return _peopleToBeVaccinated.size();
     }
 
-    public ArrayList<Person> getAllRegisteredPatients() {
+    public ArrayList<Patient> getAllRegisteredPatients() {
         return _peopleToBeVaccinated;
     }
 
@@ -46,16 +46,16 @@ public class VaccinationListManager {
         if (_peopleToBeVaccinated.isEmpty())
             throw new NoRegisteredPatientsException();
 
-        _peopleToBeVaccinated.forEach((person) -> {
-            this.allocateInPriorityQueue(person);
+        _peopleToBeVaccinated.forEach((patient) -> {
+            this.allocateInPriorityQueue(patient);
         });
     }
 
     public PQGroup getNextGroupToBeScheduled() throws NoPatientsToBeScheduled {
        PQGroup scheduledGroup = this.dequeueGroup();        
 
-        scheduledGroup.getPatients().forEach((person) -> {
-            _peopleToBeVaccinated.removeIf(x -> x.getInternalId() == person.getInternalId());
+        scheduledGroup.getPatients().forEach((patient) -> {
+            _peopleToBeVaccinated.removeIf(x -> x.getInternalId() == patient.getInternalId());
         });
 
         return scheduledGroup;
@@ -79,20 +79,20 @@ public class VaccinationListManager {
             if (pQElement == null || pQElement.getPriority() != firsElement.getPriority())
                 break;
 
-            group.addPatient(_priorityQueue.dequeue().getPerson());
+            group.addPatient(_priorityQueue.dequeue().getPatient());
         }
 
         return group;
     }
 
-    private void allocateInPriorityQueue(Person person) {
-        int priority = this.getPriority(person);
-        _priorityQueue.enqueue(priority, person);
+    private void allocateInPriorityQueue(Patient patient) {
+        int priority = this.getPriority(patient);
+        _priorityQueue.enqueue(priority, patient);
     }
 
-    private int getPriority(Person person) {
-        int age = person.getAge();
-        boolean medicalCondition = person.isMedicalCondition();
+    private int getPriority(Patient patient) {
+        int age = patient.getAge();
+        boolean medicalCondition = patient.isMedicalCondition();
 
         if (age >= 90)
             return 10;

@@ -16,7 +16,7 @@ public interface IStateContext {
 
     public void changeStatus(IWorkflowState state);
 
-    public void addPerson();
+    public void addPatient();
 
     public void patientsRegisteredCount();
 

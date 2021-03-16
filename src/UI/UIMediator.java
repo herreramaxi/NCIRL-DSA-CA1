@@ -8,7 +8,7 @@ package UI;
 import Model.Exceptions.NoPatientsToBeScheduled;
 import Model.PQGroup;
 import Model.Validation;
-import Model.Person;
+import Model.Patient;
 import Model.VaccinationListManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,24 +27,24 @@ public class UIMediator {
         _listManager = new VaccinationListManager();
     }
 
-    public void addPerson() {
+    public void addPatient() {
         String name = _mainFrame.getPatientName();
         int age = _mainFrame.getPatientAge();
         boolean medicalCondition = _mainFrame.getMedicalCondition();
 
-        Person person = new Person(name, age, medicalCondition);
-        Validation validation = person.validate();
+        Patient patient = new Patient(name, age, medicalCondition);
+        Validation validation = patient.validate();
 
         if (!validation.isSuccessful()) {
             _mainFrame.showErrorMessageDialog(validation.getErrorMessage());
             return;
         }
 
-        _listManager.addPerson(person);
+        _listManager.addPatient(patient);
 
         _mainFrame.resetIntputControls();
         _mainFrame.appendTextToTextArea("Patient added: ");
-        _mainFrame.appendTextToTextArea(person.toString());
+        _mainFrame.appendTextToTextArea(patient.toString());
     }
 
     public void patientsRegisteredCount() {
@@ -59,8 +59,8 @@ public class UIMediator {
         }
 
         _mainFrame.appendTextToTextArea("Patients registered: ");
-        _listManager.getAllRegisteredPatients().forEach((person) -> {
-            _mainFrame.appendTextToTextArea(" * " + person.toString());
+        _listManager.getAllRegisteredPatients().forEach((patient) -> {
+            _mainFrame.appendTextToTextArea(" * " + patient.toString());
         });
     }
 
@@ -92,8 +92,8 @@ public class UIMediator {
         }
 
         _mainFrame.appendTextToTextArea("Patients to be scheduled - priority " + scheduledGroup.getPriority());
-        scheduledGroup.getPatients().forEach((person) -> {
-            _mainFrame.appendTextToTextArea(" * " + person.toString());
+        scheduledGroup.getPatients().forEach((patient) -> {
+            _mainFrame.appendTextToTextArea(" * " + patient.toString());
         });
     }
 

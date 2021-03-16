@@ -31,7 +31,7 @@ public class PriorityQueue implements IPriorityQueue {
     }
 
     @Override
-    public void enqueue(int priority, Person element) {
+    public void enqueue(int priority, Patient element) {
         //Insert by high priority first
         PQElement newElement = new PQElement(element, priority);
         int index = findInsertPosition(priority);

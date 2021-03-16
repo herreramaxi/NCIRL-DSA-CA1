@@ -15,7 +15,7 @@ public class Phase1State extends WorkflowState {
 
     @Override
     public void add(IStateContext context) {
-        context.getMediator().addPerson();
+        context.getMediator().addPatient();
         context.getMediator().setPrioritiesButtonSetEnable(true);
     }   
 

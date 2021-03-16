@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author Maximiliano Herrera
  */
-public class Person {
+public class Patient {
 
     private String _name;
     private int _age;
@@ -39,7 +39,7 @@ public class Person {
         _internalId = internalId;
     }
 
-    public Person(String name, int age, boolean medicalCondition) {
+    public Patient(String name, int age, boolean medicalCondition) {
         _name = name;
         _age = age;
         _medicalCondition = medicalCondition;
@@ -59,10 +59,10 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Name:" + _name + ", age:" + _age + ", medical condition:" + (_medicalCondition ? "yes" : "no");
+        return "name: " + _name + ", age: " + _age + ", medical condition: " + (_medicalCondition ? "yes" : "no");
     }
 
-    //I am considering that the properties name, age medicalCondition identify unequivocally a Person
+    //I am considering that the properties name, age medicalCondition identify unequivocally a Patient
     @Override
     public int hashCode() {
         int hash = 3;
@@ -80,7 +80,7 @@ public class Person {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        final Person other = (Person) obj;
+        final Patient other = (Patient) obj;
         if (this._age != other._age)
             return false;
         if (this._medicalCondition != other._medicalCondition)

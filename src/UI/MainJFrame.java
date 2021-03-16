@@ -274,7 +274,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldAgeKeyTyped
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        _workflowManager.addPerson();
+        _workflowManager.addPatient();
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonAddShowHowManyRegisteredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddShowHowManyRegisteredActionPerformed

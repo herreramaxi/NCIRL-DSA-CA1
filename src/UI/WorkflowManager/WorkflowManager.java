@@ -39,7 +39,7 @@ public class WorkflowManager implements IStateContext, ISubject {
     }
 
     @Override
-    public void addPerson() {
+    public void addPatient() {
         _state.add(this);
     }
 

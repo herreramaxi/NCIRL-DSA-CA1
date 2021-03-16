@@ -11,24 +11,24 @@ package Model;
  */
 public class PQElement {
 
-    private final Person _person;
+    private final Patient _patient;
     private final int _priority;
 
-    public Person getPerson() {
-        return _person;
+    public Patient getPatient() {
+        return _patient;
     }
 
     public int getPriority() {
         return _priority;
     }
 
-    public PQElement(Person element, int priority) {
-        _person = element;
+    public PQElement(Patient element, int priority) {
+        _patient = element;
         _priority = priority;
     }
 
     @Override
     public String toString() {
-        return "PQElement{" + "element=" + _person + ", key=" + _priority + '}';
+        return "PQElement{" + "element=" + _patient + ", priority=" + _priority + '}';
     }
 }

@@ -14,13 +14,13 @@ import java.util.ArrayList;
 public class PQGroup {
 
     private final int _priority;
-    private final ArrayList<Person> _patients;
+    private final ArrayList<Patient> _patients;
 
     public int getPriority() {
         return _priority;
     }
 
-    public ArrayList<Person> getPatients() {
+    public ArrayList<Patient> getPatients() {
         return _patients;
     }
 
@@ -37,7 +37,7 @@ public class PQGroup {
         _patients = new ArrayList<>();
     }
 
-    public void addPatient(Person person) {
-        _patients.add(person);
+    public void addPatient(Patient patient) {
+        _patients.add(patient);
     }
 }

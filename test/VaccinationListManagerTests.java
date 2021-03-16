@@ -8,7 +8,7 @@ import Model.Exceptions.NoPatientsToBeScheduled;
 import Model.Exceptions.NoRegisteredPatientsException;
 import Model.Exceptions.PrioritiesAlreadyAssignedException;
 import Model.PQGroup;
-import Model.Person;
+import Model.Patient;
 import Model.VaccinationListManager;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,18 +48,18 @@ public class VaccinationListManagerTests {
     @Test
     public void when_adding_people_to_the_list_count_and_list_return_the_expected_values() {
         VaccinationListManager listManager = new VaccinationListManager();
-        Person p1 = new Person("name1", 45, false);
+        Patient p1 = new Patient("name1", 45, false);
 
         assertThat(0, is(listManager.size()));
         assertThat(0, is(listManager.getAllRegisteredPatients().size()));
 
-        listManager.addPerson(p1);
+        listManager.addPatient(p1);
         assertThat(1, is(listManager.size()));
         assertThat(1, is(listManager.getAllRegisteredPatients().size()));
         assertNotNull(listManager.getAllRegisteredPatients().stream().filter(x -> x.equals(p1)).findFirst().orElse(null));
 
-        Person p2 = new Person("name2", 32, false);
-        listManager.addPerson(p2);
+        Patient p2 = new Patient("name2", 32, false);
+        listManager.addPatient(p2);
         assertThat(2, is(listManager.size()));
         assertThat(2, is(listManager.getAllRegisteredPatients().size()));
         assertNotNull(listManager.getAllRegisteredPatients().stream().filter(x -> x.equals(p1)).findFirst().orElse(null));
@@ -69,11 +69,11 @@ public class VaccinationListManagerTests {
     @Test
     public void when_identifying_next_group_of_people_they_are_removed_from_the_list() throws PrioritiesAlreadyAssignedException, NoRegisteredPatientsException, NoPatientsToBeScheduled {
         VaccinationListManager listManager = new VaccinationListManager();
-        Person p4 = new Person("priority 4", 45, false);
-        Person p3 = new Person("priority 3", 32, false);
+        Patient p4 = new Patient("priority 4", 45, false);
+        Patient p3 = new Patient("priority 3", 32, false);
 
-        listManager.addPerson(p3);
-        listManager.addPerson(p4);
+        listManager.addPatient(p3);
+        listManager.addPatient(p4);
 
         assertThat(2, is(listManager.size()));
         assertThat(2, is(listManager.getAllRegisteredPatients().size()));
@@ -97,152 +97,152 @@ public class VaccinationListManagerTests {
 
     @Test
     public void When_removing_next_group_it_is_the_expected() throws PrioritiesAlreadyAssignedException, NoRegisteredPatientsException, NoPatientsToBeScheduled {
-        ArrayList<Person> list = new ArrayList<>();
+        ArrayList<Patient> list = new ArrayList<>();
         VaccinationListManager listManager = new VaccinationListManager();
         //- Priority 10: People aged 90 and older        
-        Person p1 = new Person("name1", 90, false);
-        Person p2 = new Person("name2", 95, false);
-        Person p3 = new Person("name3", 100, false);
+        Patient p1 = new Patient("name1", 90, false);
+        Patient p2 = new Patient("name2", 95, false);
+        Patient p3 = new Patient("name3", 100, false);
 
         list.add(p1);
         list.add(p2);
         list.add(p3);
 
-        ArrayList<Person> priority10 = new ArrayList<>();
+        ArrayList<Patient> priority10 = new ArrayList<>();
         priority10.add(p1);
         priority10.add(p2);
         priority10.add(p3);
 
         //- Priority 9: People aged 80 and older 
-        Person p4 = new Person("name1", 80, false);
-        Person p5 = new Person("name2", 82, false);
-        Person p6 = new Person("name3", 89, false);
+        Patient p4 = new Patient("name1", 80, false);
+        Patient p5 = new Patient("name2", 82, false);
+        Patient p6 = new Patient("name3", 89, false);
 
         list.add(p4);
         list.add(p5);
         list.add(p6);
 
-        ArrayList<Person> priority9 = new ArrayList<>();
+        ArrayList<Patient> priority9 = new ArrayList<>();
         priority9.add(p4);
         priority9.add(p5);
         priority9.add(p6);
 
         //- Priority 8: People aged 70 and older 
-        Person p7 = new Person("name7", 70, false);
-        Person p8 = new Person("name8", 74, false);
-        Person p9 = new Person("name9", 79, false);
+        Patient p7 = new Patient("name7", 70, false);
+        Patient p8 = new Patient("name8", 74, false);
+        Patient p9 = new Patient("name9", 79, false);
 
         list.add(p7);
         list.add(p8);
         list.add(p9);
 
-        ArrayList<Person> priority8 = new ArrayList<>();
+        ArrayList<Patient> priority8 = new ArrayList<>();
         priority8.add(p7);
         priority8.add(p8);
         priority8.add(p9);
 
         //- Priority 7: People aged 65-69 
-        Person p10 = new Person("name10", 65, false);
-        Person p11 = new Person("name11", 67, false);
-        Person p12 = new Person("name12", 69, false);
+        Patient p10 = new Patient("name10", 65, false);
+        Patient p11 = new Patient("name11", 67, false);
+        Patient p12 = new Patient("name12", 69, false);
 
         list.add(p10);
         list.add(p11);
         list.add(p12);
 
-        ArrayList<Person> priority7 = new ArrayList<>();
+        ArrayList<Patient> priority7 = new ArrayList<>();
         priority7.add(p10);
         priority7.add(p11);
         priority7.add(p12);
 
         //- Priority 6: People aged 18-64 with medical condition(s) 
-        Person p13 = new Person("name13", 18, true);
-        Person p14 = new Person("name14", 50, true);
-        Person p15 = new Person("name15", 64, true);
+        Patient p13 = new Patient("name13", 18, true);
+        Patient p14 = new Patient("name14", 50, true);
+        Patient p15 = new Patient("name15", 64, true);
 
         list.add(p13);
         list.add(p14);
         list.add(p15);
 
-        ArrayList<Person> priority6 = new ArrayList<>();
+        ArrayList<Patient> priority6 = new ArrayList<>();
         priority6.add(p13);
         priority6.add(p14);
         priority6.add(p15);
 
         //- Priority 5: People aged 55-64 
-        Person p16 = new Person("name16", 55, false);
-        Person p17 = new Person("name17", 58, false);
-        Person p18 = new Person("name18", 64, false);
+        Patient p16 = new Patient("name16", 55, false);
+        Patient p17 = new Patient("name17", 58, false);
+        Patient p18 = new Patient("name18", 64, false);
 
         list.add(p16);
         list.add(p17);
         list.add(p18);
 
-        ArrayList<Person> priority5 = new ArrayList<>();
+        ArrayList<Patient> priority5 = new ArrayList<>();
         priority5.add(p16);
         priority5.add(p17);
         priority5.add(p18);
 
         //- Priority 4: People aged 45-54 
-        Person p19 = new Person("name19", 45, false);
-        Person p20 = new Person("name20", 50, false);
-        Person p21 = new Person("name21", 54, false);
+        Patient p19 = new Patient("name19", 45, false);
+        Patient p20 = new Patient("name20", 50, false);
+        Patient p21 = new Patient("name21", 54, false);
 
         list.add(p19);
         list.add(p20);
         list.add(p21);
 
-        ArrayList<Person> priority4 = new ArrayList<>();
+        ArrayList<Patient> priority4 = new ArrayList<>();
         priority4.add(p19);
         priority4.add(p20);
         priority4.add(p21);
 
         //- Priority 3: People aged 30-44 
-        Person p22 = new Person("name22", 30, false);
-        Person p23 = new Person("name23", 40, false);
-        Person p24 = new Person("name24", 44, false);
+        Patient p22 = new Patient("name22", 30, false);
+        Patient p23 = new Patient("name23", 40, false);
+        Patient p24 = new Patient("name24", 44, false);
 
         list.add(p22);
         list.add(p23);
         list.add(p24);
 
-        ArrayList<Person> priority3 = new ArrayList<>();
+        ArrayList<Patient> priority3 = new ArrayList<>();
         priority3.add(p22);
         priority3.add(p23);
         priority3.add(p24);
 
         //- Priority 2: people aged 18-29 
-        Person p25 = new Person("name25", 18, false);
-        Person p26 = new Person("name26", 25, false);
-        Person p27 = new Person("name27", 29, false);
+        Patient p25 = new Patient("name25", 18, false);
+        Patient p26 = new Patient("name26", 25, false);
+        Patient p27 = new Patient("name27", 29, false);
 
         list.add(p25);
         list.add(p26);
         list.add(p27);
 
-        ArrayList<Person> priority2 = new ArrayList<>();
+        ArrayList<Patient> priority2 = new ArrayList<>();
         priority2.add(p25);
         priority2.add(p26);
         priority2.add(p27);
 
         //- Priority 1: People aged under 18
-        Person p28 = new Person("name28", 5, false);
-        Person p29 = new Person("name29", 10, false);
-        Person p30 = new Person("name30", 17, false);
+        Patient p28 = new Patient("name28", 5, false);
+        Patient p29 = new Patient("name29", 10, false);
+        Patient p30 = new Patient("name30", 17, false);
 
         list.add(p28);
         list.add(p29);
         list.add(p30);
 
-        ArrayList<Person> priority1 = new ArrayList<>();
+        ArrayList<Patient> priority1 = new ArrayList<>();
         priority1.add(p28);
         priority1.add(p29);
         priority1.add(p30);
 
         Collections.shuffle(list);
 
-        list.forEach((person) -> {
-            listManager.addPerson(person);
+        list.forEach((patient) -> {
+            listManager.addPatient(patient);
         });
 
         listManager.setPriorities();
@@ -288,11 +288,11 @@ public class VaccinationListManagerTests {
     @Test(expected = NoPatientsToBeScheduled.class)
     public void When_removing_next_group_from_a_list_without_assigned_priorities_an_exception_is_thrown() throws NoPatientsToBeScheduled {
         VaccinationListManager listManager = new VaccinationListManager();
-        Person p4 = new Person("priority 4", 45, false);
-        Person p3 = new Person("priority 3", 32, false);
+        Patient p4 = new Patient("priority 4", 45, false);
+        Patient p3 = new Patient("priority 3", 32, false);
 
-        listManager.addPerson(p3);
-        listManager.addPerson(p4);
+        listManager.addPatient(p3);
+        listManager.addPatient(p4);
 
         listManager.getNextGroupToBeScheduled();
     }
@@ -308,23 +308,23 @@ public class VaccinationListManagerTests {
     public void When_setting_priorities_to_a_list_with_priorities_already_set_an_exception_is_thrown() throws NoRegisteredPatientsException, PrioritiesAlreadyAssignedException {
         VaccinationListManager listManager = new VaccinationListManager();
 
-        Person p1 = new Person("name1", 90, false);
-        Person p2 = new Person("name2", 95, false);
-        Person p3 = new Person("name3", 100, false);
-        listManager.addPerson(p1);
-        listManager.addPerson(p2);
-        listManager.addPerson(p3);
+        Patient p1 = new Patient("name1", 90, false);
+        Patient p2 = new Patient("name2", 95, false);
+        Patient p3 = new Patient("name3", 100, false);
+        listManager.addPatient(p1);
+        listManager.addPatient(p2);
+        listManager.addPatient(p3);
 
         listManager.setPriorities();
         listManager.setPriorities();
     }
 
-    private void AssertNextGroup(PQGroup nextGroup, ArrayList<Person> listForPriorityN, int priority) {
+    private void AssertNextGroup(PQGroup nextGroup, ArrayList<Patient> listForPriorityN, int priority) {
         assertThat(listForPriorityN.size(), is(nextGroup.size()));
         assertThat(nextGroup.getPriority(), is(priority));
 
-        for (Person person : listForPriorityN) {
-            Boolean found = nextGroup.getPatients().stream().filter((q) -> q.equals(person))
+        for (Patient patient : listForPriorityN) {
+            Boolean found = nextGroup.getPatients().stream().filter((q) -> q.equals(patient))
                     .findFirst()
                     .orElse(null) != null;
 
