@@ -5,8 +5,9 @@
  */
 package UI;
 
+import Model.Exceptions.NoPatientsToBeScheduled;
+import Model.PQGroup;
 import Model.Validation;
-import java.util.ArrayList;
 import Model.Person;
 import Model.VaccinationListManager;
 import java.util.logging.Level;
@@ -23,7 +24,7 @@ public class UIMediator {
 
     UIMediator(MainJFrame mainFrame) {
         _mainFrame = mainFrame;
-        _listManager = new VaccinationListManager();  
+        _listManager = new VaccinationListManager();
     }
 
     public void addPerson() {
@@ -42,7 +43,7 @@ public class UIMediator {
         _listManager.addPerson(person);
 
         _mainFrame.resetIntputControls();
-        _mainFrame.appendTextToTextArea("Person added: ");
+        _mainFrame.appendTextToTextArea("Patient added: ");
         _mainFrame.appendTextToTextArea(person.toString());
     }
 
@@ -59,7 +60,7 @@ public class UIMediator {
 
         _mainFrame.appendTextToTextArea("Patients registered: ");
         _listManager.getAllRegisteredPatients().forEach((person) -> {
-            _mainFrame.appendTextToTextArea(person.toString());
+            _mainFrame.appendTextToTextArea(" * " + person.toString());
         });
     }
 
@@ -75,26 +76,25 @@ public class UIMediator {
             return true;
         } catch (Exception ex) {
             Logger.getLogger(UIMediator.class.getName()).log(Level.SEVERE, null, ex);
-            _mainFrame.showErrorMessage("Error when setting priorities: " + ex.getMessage());           
+            _mainFrame.showErrorMessage("Error when setting priorities: " + ex.getMessage());
         }
-        
-         return false;
+
+        return false;
     }
 
-    public boolean patientsToBeScheduled() {
-        ArrayList<Person> patients = _listManager.getNextGroupToBeScheduled();
-
-        if (patients.isEmpty()) {
-            _mainFrame.showMessage("There are no patients to be scheduled");
-            return false;
+    public void patientsToBeScheduled() {
+        PQGroup scheduledGroup;
+        try {
+            scheduledGroup = _listManager.getNextGroupToBeScheduled();
+        } catch (NoPatientsToBeScheduled ex) {
+            _mainFrame.showMessage("There are no more patients to be scheduled");
+            return;
         }
 
-        _mainFrame.appendTextToTextArea("Patients to be scheduled: ");
-        patients.forEach((person) -> {
-            _mainFrame.appendTextToTextArea(person.toString());
+        _mainFrame.appendTextToTextArea("Patients to be scheduled - priority " + scheduledGroup.getPriority());
+        scheduledGroup.getPatients().forEach((person) -> {
+            _mainFrame.appendTextToTextArea(" * " + person.toString());
         });
-
-        return true;
     }
 
     public void setPrioritiesButtonSetEnable(boolean enabled) {

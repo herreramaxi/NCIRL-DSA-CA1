@@ -72,8 +72,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     public void showErrorMessageDialog(String message) {
-        JOptionPane.showMessageDialog(this, message, "Dialog",
-                JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, message, "Dialog", JOptionPane.WARNING_MESSAGE);
     }
 
     public void priorityButtonSetEnable(boolean enabled) {

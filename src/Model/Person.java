@@ -5,7 +5,6 @@
  */
 package Model;
 
-import Model.Validation;
 import com.google.common.base.Strings;
 import java.util.Objects;
 
@@ -60,10 +59,10 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" + "_name=" + _name + ", _age=" + _age + ", _medicalCondition=" + _medicalCondition + '}';
+        return "Name:" + _name + ", age:" + _age + ", medical condition:" + (_medicalCondition ? "yes" : "no");
     }
 
-    //I am considering that the properties name, age medicalCondition identify uniquevocaly a Person
+    //I am considering that the properties name, age medicalCondition identify unequivocally a Person
     @Override
     public int hashCode() {
         int hash = 3;

@@ -19,17 +19,7 @@ public class Phase3State extends WorkflowState {
 
     @Override
     public void add(IStateContext context) {
-    }
-
-    @Override
-    public void count(IStateContext context) {
-        context.getMediator().patientsRegisteredCount();
-    }
-
-    @Override
-    public void list(IStateContext context) {
-        context.getMediator().listAll();
-    }
+    }   
 
     @Override
     public void setPriorities(IStateContext context) {
@@ -42,7 +32,7 @@ public class Phase3State extends WorkflowState {
         if (!context.getMediator().areThereMorePatientsToBeScheduled()) {
             context.getMainJFrame().showMessage("There are no more patients to be scheduled");
             context.initialize();
-            context.ChangeStatus(new Phase1State());
+            context.changeStatus(new Phase1State());
         }
     }
 

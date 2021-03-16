@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+import Model.Exceptions.NoPatientsToBeScheduled;
 import Model.Exceptions.NoRegisteredPatientsException;
 import Model.Exceptions.PrioritiesAlreadyAssignedException;
+import Model.PQGroup;
 import Model.Person;
 import Model.VaccinationListManager;
 import java.util.ArrayList;
@@ -65,7 +67,7 @@ public class VaccinationListManagerTests {
     }
 
     @Test
-    public void when_identifying_next_group_of_people_they_are_removed_from_the_list() throws PrioritiesAlreadyAssignedException, NoRegisteredPatientsException {
+    public void when_identifying_next_group_of_people_they_are_removed_from_the_list() throws PrioritiesAlreadyAssignedException, NoRegisteredPatientsException, NoPatientsToBeScheduled {
         VaccinationListManager listManager = new VaccinationListManager();
         Person p4 = new Person("priority 4", 45, false);
         Person p3 = new Person("priority 3", 32, false);
@@ -76,29 +78,25 @@ public class VaccinationListManagerTests {
         assertThat(2, is(listManager.size()));
         assertThat(2, is(listManager.getAllRegisteredPatients().size()));
 
-        ArrayList<Person> nextGroup = listManager.getNextGroupToBeScheduled();
-        assertThat(0, is(nextGroup.size()));
-        assertThat(2, is(listManager.size()));
-
         listManager.setPriorities();
 
-        nextGroup = listManager.getNextGroupToBeScheduled();
+        PQGroup nextGroup = listManager.getNextGroupToBeScheduled();
         assertThat(1, is(nextGroup.size()));
         assertThat(1, is(listManager.size()));
         assertThat(1, is(listManager.getAllRegisteredPatients().size()));
         assertNotNull(listManager.getAllRegisteredPatients().stream().filter(x -> x.equals(p3)).findFirst().orElse(null));
         assertNull(listManager.getAllRegisteredPatients().stream().filter(x -> x.equals(p4)).findFirst().orElse(null));
-        assertNotNull(nextGroup.stream().filter(x -> x.equals(p4)).findFirst().orElse(null));
+        assertNotNull(nextGroup.getPatients().stream().filter(x -> x.equals(p4)).findFirst().orElse(null));
 
         nextGroup = listManager.getNextGroupToBeScheduled();
         assertThat(1, is(nextGroup.size()));
-        assertNotNull(nextGroup.stream().filter(x -> x.equals(p3)).findFirst().orElse(null));
+        assertNotNull(nextGroup.getPatients().stream().filter(x -> x.equals(p3)).findFirst().orElse(null));
         assertThat(0, is(listManager.size()));
         assertThat(0, is(listManager.getAllRegisteredPatients().size()));
     }
 
     @Test
-    public void When_removing_next_group_it_is_the_expected() throws PrioritiesAlreadyAssignedException, NoRegisteredPatientsException {
+    public void When_removing_next_group_it_is_the_expected() throws PrioritiesAlreadyAssignedException, NoRegisteredPatientsException, NoPatientsToBeScheduled {
         ArrayList<Person> list = new ArrayList<>();
         VaccinationListManager listManager = new VaccinationListManager();
         //- Priority 10: People aged 90 and older        
@@ -249,38 +247,54 @@ public class VaccinationListManagerTests {
 
         listManager.setPriorities();
 
-        ArrayList<Person> nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority10);
+        PQGroup nextGroup = listManager.getNextGroupToBeScheduled();
+        AssertNextGroup(nextGroup, priority10, 10);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority9);
+        AssertNextGroup(nextGroup, priority9, 9);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority8);
+        AssertNextGroup(nextGroup, priority8, 8);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority7);
+        AssertNextGroup(nextGroup, priority7, 7);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority6);
+        AssertNextGroup(nextGroup, priority6, 6);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority5);
+        AssertNextGroup(nextGroup, priority5, 5);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority4);
+        AssertNextGroup(nextGroup, priority4, 4);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority3);
+        AssertNextGroup(nextGroup, priority3, 3);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority2);
+        AssertNextGroup(nextGroup, priority2, 2);
 
         nextGroup = listManager.getNextGroupToBeScheduled();
-        AssertNextGroup(nextGroup, priority1);
+        AssertNextGroup(nextGroup, priority1, 1);
+    }
 
-        nextGroup = listManager.getNextGroupToBeScheduled();
-        assertThat(0, is(nextGroup.size()));
+    @Test(expected = NoPatientsToBeScheduled.class)
+    public void When_removing_next_group_from_empty_list_an_exception_is_thrown() throws NoPatientsToBeScheduled {
+        VaccinationListManager listManager = new VaccinationListManager();
+
+        listManager.getNextGroupToBeScheduled();
+    }
+
+    @Test(expected = NoPatientsToBeScheduled.class)
+    public void When_removing_next_group_from_a_list_without_assigned_priorities_an_exception_is_thrown() throws NoPatientsToBeScheduled {
+        VaccinationListManager listManager = new VaccinationListManager();
+        Person p4 = new Person("priority 4", 45, false);
+        Person p3 = new Person("priority 3", 32, false);
+
+        listManager.addPerson(p3);
+        listManager.addPerson(p4);
+
+        listManager.getNextGroupToBeScheduled();
     }
 
     @Test(expected = NoRegisteredPatientsException.class)
@@ -305,11 +319,12 @@ public class VaccinationListManagerTests {
         listManager.setPriorities();
     }
 
-    private void AssertNextGroup(ArrayList<Person> nextGroup, ArrayList<Person> listForPriorityN) {
+    private void AssertNextGroup(PQGroup nextGroup, ArrayList<Person> listForPriorityN, int priority) {
         assertThat(listForPriorityN.size(), is(nextGroup.size()));
+        assertThat(nextGroup.getPriority(), is(priority));
 
         for (Person person : listForPriorityN) {
-            Boolean found = nextGroup.stream().filter((q) -> q.equals(person))
+            Boolean found = nextGroup.getPatients().stream().filter((q) -> q.equals(person))
                     .findFirst()
                     .orElse(null) != null;
 

@@ -19,17 +19,7 @@ public class Phase2State extends WorkflowState {
 
     @Override
     public void add(IStateContext context) {
-    }
-
-    @Override
-    public void count(IStateContext context) {
-        context.getMediator().patientsRegisteredCount();
-    }
-
-    @Override
-    public void list(IStateContext context) {
-        context.getMediator().listAll();
-    }
+    }   
 
     @Override
     public void setPriorities(IStateContext context) {
@@ -37,7 +27,7 @@ public class Phase2State extends WorkflowState {
 
     @Override
     public void getNextGroup(IStateContext context) {
-        this.ChangeStatus(context, new Phase3State());
+        this.changeStatus(context, new Phase3State());
         context.getNextGroup();
     }
 

@@ -17,17 +17,7 @@ public class Phase1State extends WorkflowState {
     public void add(IStateContext context) {
         context.getMediator().addPerson();
         context.getMediator().setPrioritiesButtonSetEnable(true);
-    }
-
-    @Override
-    public void count(IStateContext context) {
-        context.getMediator().patientsRegisteredCount();
-    }
-
-    @Override
-    public void list(IStateContext context) {
-        context.getMediator().listAll();
-    }
+    }   
 
     @Override
     public void setPriorities(IStateContext context) {
@@ -38,7 +28,7 @@ public class Phase1State extends WorkflowState {
         context.getMediator().addButtonSetEnable(false);
         context.getMediator().getNextGroupButtonSetEnable(true);
 
-        this.ChangeStatus(context, new Phase2State());
+        this.changeStatus(context, new Phase2State());
     }
 
     @Override

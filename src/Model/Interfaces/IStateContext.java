@@ -14,7 +14,7 @@ import UI.UIMediator;
  */
 public interface IStateContext {
 
-    public void ChangeStatus(IWorkflowState state);
+    public void changeStatus(IWorkflowState state);
 
     public void addPerson();
 

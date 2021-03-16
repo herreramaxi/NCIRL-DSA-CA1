@@ -11,7 +11,7 @@ package Model.Interfaces;
  */
 public interface IWorkflowState {
 
-    public void ChangeStatus(IStateContext context, IWorkflowState state);
+    public void changeStatus(IStateContext context, IWorkflowState state);
 
     public void add(IStateContext context);
 

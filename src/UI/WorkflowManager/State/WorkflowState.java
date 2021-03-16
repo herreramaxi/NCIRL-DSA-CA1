@@ -15,7 +15,17 @@ import Model.Interfaces.IWorkflowState;
 public abstract class WorkflowState implements IWorkflowState {
 
     @Override
-    public void ChangeStatus(IStateContext context, IWorkflowState state) {
-        context.ChangeStatus(state);
+    public void changeStatus(IStateContext context, IWorkflowState state) {
+        context.changeStatus(state);
+    }
+    
+     @Override
+    public void count(IStateContext context) {
+        context.getMediator().patientsRegisteredCount();
+    }
+
+    @Override
+    public void list(IStateContext context) {
+        context.getMediator().listAll();
     }
 }

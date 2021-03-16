@@ -47,24 +47,22 @@ public class PriorityQueue implements IPriorityQueue {
     @Override
     public PQElement peek() {
         return _internalList.size() > 0 ? _internalList.get(0) : null;
-    }  
+    }
 
-    private int findInsertPosition(int key) {
-        boolean found = false;
+    private int findInsertPosition(int priority) {
         int position = 0;
-        PQElement element;
 
-        while (position < _internalList.size() && !found) {
-            element = _internalList.get(position);
+        while (position < _internalList.size()) {
+            PQElement element = _internalList.get(position);
 
-            //FIFO within same priority (>=)
-            if (element.getPriority() >= key) {
-                position = position + 1;
-            } else {
-                found = true;
+            //FIFO for elements with same priority
+            if (priority > element.getPriority()) {
+                break;
             }
+
+            position++;
         }
 
         return position;
-    }    
+    }
 }

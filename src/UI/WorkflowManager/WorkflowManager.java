@@ -64,7 +64,7 @@ public class WorkflowManager implements IStateContext, ISubject {
     }
 
     @Override
-    public void ChangeStatus(IWorkflowState state) {
+    public void changeStatus(IWorkflowState state) {
         _state = state;
         this.Notify();
     }

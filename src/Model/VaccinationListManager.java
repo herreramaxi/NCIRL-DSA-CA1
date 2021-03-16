@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Model.Exceptions.NoPatientsToBeScheduled;
 import Model.Exceptions.NoRegisteredPatientsException;
 import Model.Exceptions.PrioritiesAlreadyAssignedException;
 import java.util.ArrayList;
@@ -50,10 +51,10 @@ public class VaccinationListManager {
         });
     }
 
-    public ArrayList<Person> getNextGroupToBeScheduled() {
-        ArrayList<Person> scheduledGroup = this.dequeueGroup();
+    public PQGroup getNextGroupToBeScheduled() throws NoPatientsToBeScheduled {
+       PQGroup scheduledGroup = this.dequeueGroup();        
 
-        scheduledGroup.forEach((person) -> {
+        scheduledGroup.getPatients().forEach((person) -> {
             _peopleToBeVaccinated.removeIf(x -> x.getInternalId() == person.getInternalId());
         });
 
@@ -64,12 +65,13 @@ public class VaccinationListManager {
         return this.size() == 0;
     }
 
-    private ArrayList<Person> dequeueGroup() {
-        ArrayList<Person> list = new ArrayList<>();
+    private PQGroup dequeueGroup() throws NoPatientsToBeScheduled {
         PQElement firsElement = _priorityQueue.peek();
 
         if (firsElement == null)
-            return list;
+            throw new NoPatientsToBeScheduled();
+
+        PQGroup group = new PQGroup(firsElement.getPriority());
 
         for (int i = 0, size = _priorityQueue.size(); i < size; i++) {
             PQElement pQElement = _priorityQueue.peek();
@@ -77,10 +79,10 @@ public class VaccinationListManager {
             if (pQElement == null || pQElement.getPriority() != firsElement.getPriority())
                 break;
 
-            list.add(_priorityQueue.dequeue().getPerson());
+            group.addPatient(_priorityQueue.dequeue().getPerson());
         }
 
-        return list;
+        return group;
     }
 
     private void allocateInPriorityQueue(Person person) {
