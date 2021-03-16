@@ -1,16 +1,15 @@
 # NCIRL-DSA-CA1
 
-#### Starting point
-https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/MainJFrame.java
+#### UI mainframe
+- [MainJFrame.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/MainJFrame.java)
 
-#### Priority Queue
-https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java
-
-#### VaccinationListManager
-https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/VaccinationListManager.java
-
+#### Main classes
+- [PriorityQueue.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java)
+- [VaccinationListManager.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/VaccinationListManager.java)
+- [UIMediator.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/UIMediator.java)
+- 
 #### Test cases
-https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java
+- [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java)
 
 #### Design - Mockup
 ![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png)
