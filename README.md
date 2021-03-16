@@ -7,7 +7,15 @@
 - [PriorityQueue.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java)
 - [VaccinationListManager.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/VaccinationListManager.java)
 - [UIMediator.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/UIMediator.java)
-- 
+- [WorkflowManager.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/WorkflowManager/WorkflowManager.java)
+
+#### Project structure
+ - [src](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src)
+    -  [Model](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/Model)
+    -  [StartingPoint](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/StartingPoint)
+    -  [UI](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/UI)
+        * [WorkflowManager](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/UI/WorkflowManager)
+ 
 #### Test cases
 - [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java)
 
