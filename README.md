@@ -1,6 +1,6 @@
 # NCIRL-DSA-CA1
 
-#### UI mainframe
+#### UI MainJFrame
 - [MainJFrame.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/MainJFrame.java)
 
 #### Main classes
@@ -19,10 +19,12 @@
 #### Test cases
 - [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java)
 
+<a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/TestCasesReport.JPG"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/TestCasesReport.JPG" align="center" height="200" width="450" ></a>
+
 #### Design - Mockup
 <a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png" align="center" height="350" width="350" ></a>
 
-#### Mainframe
+#### UI Implementation
 <a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Main%20frame.JPG"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Main%20frame.JPG" align="center" height="350" width="350" ></a>
 
 #### Workflow state machine
