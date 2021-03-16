@@ -20,7 +20,7 @@
 - [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java)
 
 #### Design - Mockup
-<a href=""https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png" align="center" height="350" width="350" ></a>
+<a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png" align="center" height="350" width="350" ></a>
 
 #### Mainframe
 <a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Main%20frame.JPG"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Main%20frame.JPG" align="center" height="350" width="350" ></a>
