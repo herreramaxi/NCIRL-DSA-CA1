@@ -1,19 +1,29 @@
 # NCIRL-DSA-CA1
 
-#### Starting point
-https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/MainJFrame.java
+#### UI mainframe
+- [MainJFrame.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/MainJFrame.java)
 
-#### Priority Queue
-https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java
+#### Main classes
+- [PriorityQueue.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java)
+- [VaccinationListManager.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/VaccinationListManager.java)
+- [UIMediator.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/UIMediator.java)
+- [WorkflowManager.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/WorkflowManager/WorkflowManager.java)
 
-#### VaccinationListManager
-https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/VaccinationListManager.java
-
+#### Project structure
+ - [src](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src)
+    -  [Model](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/Model)
+    -  [StartingPoint](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/StartingPoint)
+    -  [UI](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/UI)
+        * [WorkflowManager](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/UI/WorkflowManager)
+ 
 #### Test cases
-https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java
+- [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java)
 
 #### Design - Mockup
-![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png)
+<a href="url"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png" align="center" height="350" width="350" ></a>
+
+#### Mainframe
+<a href="url"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Main%20frame.JPG" align="center" height="350" width="350" ></a>
 
 #### Workflow state machine
-![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Workflow%20state%20machine.jpg)
+<a href="url"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Workflow%20state%20machine.jpg" align="center" height="230" width="500" ></a>
