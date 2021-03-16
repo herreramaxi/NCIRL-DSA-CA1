@@ -12,10 +12,10 @@
 - [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java)
 
 #### Design - Mockup
-![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png)
+<a href="url"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png" align="center" height="350" width="350" ></a>
 
 #### Mainframe
-![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Main%20frame.JPG)
+<a href="url"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Main%20frame.JPG" align="center" height="350" width="350" ></a>
 
 #### Workflow state machine
-![alt text](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Workflow%20state%20machine.jpg)
+<a href="url"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/Workflow%20state%20machine.jpg" align="center" height="230" width="500" ></a>
