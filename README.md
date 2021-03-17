@@ -1,4 +1,7 @@
 # NCIRL-DSA-CA1
+Data structures used:
+- [Priority queue](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java): Enqueue patients according to their priorities.
+- [ArrayList](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/1cf23ab1454396ef6560180a324a6c4a9fad0c86/src/Model/VaccinationListManager.java#L19): Add patients to be vaccinated.
 
 #### UI MainJFrame
 - [MainJFrame.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/MainJFrame.java)
