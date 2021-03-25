@@ -1,7 +1,23 @@
 # NCIRL-DSA-CA1
-Data structures used:
+#### Data structures used:
 - [Priority queue](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java): Enqueue patients according to their priorities.
 - [ArrayList](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/1cf23ab1454396ef6560180a324a6c4a9fad0c86/src/Model/VaccinationListManager.java#L19): Add patients to be vaccinated.
+
+#### Test cases
+- [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java)
+- How to run the test cases on Netbeans
+    - Click right on [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java) and select "Test File".
+    - Another option is to open above file and right click on any part of the source code, select "Test File" (Ctrl + F6).
+
+##### Test cases result
+<a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/TestCasesReport.JPG"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/TestCasesReport.JPG" align="center" height="200" width="450" ></a>
+
+#### Project structure
+ - [src](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src)
+    -  [Model](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/Model)
+    -  [StartingPoint](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/StartingPoint)
+    -  [UI](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/UI)
+        * [WorkflowManager](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/UI/WorkflowManager)
 
 #### UI MainJFrame
 - [MainJFrame.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/MainJFrame.java)
@@ -11,18 +27,6 @@ Data structures used:
 - [VaccinationListManager.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/VaccinationListManager.java)
 - [UIMediator.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/UIMediator.java)
 - [WorkflowManager.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/UI/WorkflowManager/WorkflowManager.java)
-
-#### Project structure
- - [src](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src)
-    -  [Model](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/Model)
-    -  [StartingPoint](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/StartingPoint)
-    -  [UI](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/UI)
-        * [WorkflowManager](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src/UI/WorkflowManager)
- 
-#### Test cases
-- [VaccinationListManagerTests.java](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/test/VaccinationListManagerTests.java)
-
-<a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/TestCasesReport.JPG"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/TestCasesReport.JPG" align="center" height="200" width="450" ></a>
 
 #### Design - Mockup
 <a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/ca%20mockup.png" align="center" height="350" width="350" ></a>
