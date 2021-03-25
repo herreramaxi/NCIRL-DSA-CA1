@@ -1,7 +1,4 @@
 # NCIRL-DSA-CA1
-#### Data structures used:
-- [Priority queue](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java): Enqueue patients according to their priorities.
-- [ArrayList](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/1cf23ab1454396ef6560180a324a6c4a9fad0c86/src/Model/VaccinationListManager.java#L19): Add patients to be vaccinated.
 
 #### How to run the application
 - Right click on the project "VaccinationScheduleSystem", select Run (or F6).
@@ -16,6 +13,10 @@
 
 ##### Test cases result
 <a href="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/TestCasesReport.JPG"><img src="https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/uml/TestCasesReport.JPG" align="center" height="200" width="450" ></a>
+
+#### Data structures used:
+- [Priority queue](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/main/src/Model/PriorityQueue.java): Enqueue patients according to their priorities.
+- [ArrayList](https://github.com/herreramaxi/NCIRL-DSA-CA1/blob/1cf23ab1454396ef6560180a324a6c4a9fad0c86/src/Model/VaccinationListManager.java#L19): Add patients to be vaccinated.
 
 #### Project structure
  - [src](https://github.com/herreramaxi/NCIRL-DSA-CA1/tree/main/src)
